@@ -1,0 +1,2 @@
+# WutheringWavesGachaSimulator
+一个鸣潮的抽卡模拟器
