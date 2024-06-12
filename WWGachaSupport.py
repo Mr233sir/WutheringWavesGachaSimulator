@@ -168,14 +168,17 @@ def main():
         result_text.config(state=tk.DISABLED)  # 设置为只读状态
 
     def shell():
-        result = sim(int(IntertwinedFateNum.get()) if IntertwinedFateNum.get() else 0,
-                     int(Discounts.get()) if Discounts.get() else 1,
-                     int(Budget.get()) if Budget.get() else 0,
-                     int(ExpectedCharacterNum.get()) if ExpectedCharacterNum.get() else 0,
-                     bool(checkbox_1.get()),
-                     int(CharacterPoolStage.get()) if CharacterPoolStage.get() else 0,
-                     int(ExpectedWeaponNum.get()) if ExpectedWeaponNum.get() else 0,
-                     int(WeaponPoolStage.get()) if WeaponPoolStage.get() else 0)
+        try:
+            result = sim(int(IntertwinedFateNum.get() if IntertwinedFateNum.get() else 0.0),
+                         float(Discounts.get() if Discounts.get() else 1.0),
+                         int(Budget.get() if Budget.get() else 0.0),
+                         int(ExpectedCharacterNum.get() if ExpectedCharacterNum.get() else 0.0),
+                         bool(checkbox_1.get()),
+                         int(CharacterPoolStage.get() if CharacterPoolStage.get() else 0.0),
+                         int(ExpectedWeaponNum.get() if ExpectedWeaponNum.get() else 0.0),
+                         int(WeaponPoolStage.get() if WeaponPoolStage.get() else 0.0))
+        except ValueError:
+            result = ['输入无效']
 
         for item in result:
             textbox_output(item)
